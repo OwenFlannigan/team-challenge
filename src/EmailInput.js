@@ -3,8 +3,11 @@ import React from 'react';
 /**
  * A component representing a controlled input for an email address
  */
+//var validations = {required:true, email:true};
+
 class EmailInput extends React.Component {
   validate(currentValue){
+
     if(currentValue === ''){ //check presence
       return {missing: true, isValid: false}
     }
@@ -42,20 +45,18 @@ class EmailInput extends React.Component {
     return (
       <div className={inputStyle}>
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" className="form-control" placeholder="email address"
+        <input type="email" id="email" name="email" className="form-control" placeholder="email address" required 
                 value={this.props.value}
                 onChange={(e) => this.handleChange(e)}
         />
-        {errors.missing &&
-          <p className="help-block error-missing">we need to know your email address</p>
-        }
-        {errors.invalid &&
-          <p className="help-block error-invalid">this is not a valid email address</p>
-        }
+        {errors.missing && <p className="help-block error-missing">Email address required</p>}
+        {errors.invalidEmail && <p className="help-block error-invalid">This is not a valid email address</p>}
       </div>
     );
   }
 
 }
+
+
 
 export default EmailInput;
