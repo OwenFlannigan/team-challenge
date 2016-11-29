@@ -5,14 +5,14 @@ import React from 'react';
  */
 class PasswordConfirmationInput extends React.Component {
   validate(currentValue){
-    if(currentValue === '' || this.props.password === ''){ //check both entries
+    if(currentValue === '' || this.props.password === '' || !(currentValue === this.props.password)) { //check both entries
       return {mismatched:true, isValid:false};
     }
 
-    return {isValid: true}; //no errors
+    return {mismatched: false, isValid: true}; //no errors
   }
 
-  handleChange(event){
+  handleChange(event){  
     //check validity (to inform parent)
     var isValid = this.validate(event.target.value).isValid;
 

@@ -7,6 +7,7 @@ class App extends Component {
       <div className="App">
         <div className="page-header">
           <h1>Sign Up</h1>
+          
           <h2><small>Our service is fun and awesome, but you must be 13 years old to join</small></h2>
           <hr />
         </div>
