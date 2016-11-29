@@ -7,18 +7,18 @@ class PasswordConfirmationInput extends React.Component {
   validate(currentValue){
     if(currentValue === '' || this.props.password === ''){ //check both entries
       return {mismatched:true, isValid:false};
-    }    
+    }
 
     return {isValid: true}; //no errors
-  }  
-  
-  handleChange(event){  
+  }
+
+  handleChange(event){
     //check validity (to inform parent)
     var isValid = this.validate(event.target.value).isValid;
 
     //what to assign to parent's state
     var stateUpdate = {
-      'passConf': {
+      'passwordConf': {
         value:event.target.value,
         valid:isValid
       }
@@ -40,7 +40,7 @@ class PasswordConfirmationInput extends React.Component {
                 onChange={(e) => this.handleChange(e)}
         />
         {errors.mismatched &&
-          <p className="help-block error-mismatched">passwords don't match</p>
+          <p className="help-block error-mismatched">"passwords don't match"</p>
         }
       </div>
     );

@@ -11,7 +11,7 @@ class SignUpForm extends React.Component {
   constructor(props){
     super(props);
     this.state = { //track values and overall validity of each field
-      email:{value:'',valid:false}, 
+      email:{value:'',valid:false},
       name:{value:'',valid:false},
       dob:{value:'',valid:false},
       password:{value:'',valid:false},
@@ -49,20 +49,20 @@ class SignUpForm extends React.Component {
 
         <EmailInput value={this.state.email.value} updateParent={this.updateState} />
 
-        <RequiredInput 
+        <RequiredInput
           id="name" field="name" type="text"
           label="Name" placeholder="your name"
           errorMessage="we need to know your name"
-          value={this.state.name.value} 
+          value={this.state.name.value}
           updateParent={this.updateState} />
 
         <BirthdayInput value={this.state.dob.value} updateParent={this.updateState}/>
 
-        <RequiredInput 
+        <RequiredInput
           id="password" field="password" type="password"
           label="Password" placeholder=""
           errorMessage="your password can't be blank"
-          value={this.state.password.value} 
+          value={this.state.password.value}
           updateParent={this.updateState} />
 
         <PasswordConfirmationInput value={this.state.passwordConf.value} password={this.state.password.value} updateParent={this.updateState}/>
