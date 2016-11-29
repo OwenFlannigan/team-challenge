@@ -12,3 +12,11 @@ body {
 .App h2 {
   color: gray;
 }
+
+.help-block {
+  color: red !important;
+}
+
+.invalid input {
+  background: #f2dede;
+}

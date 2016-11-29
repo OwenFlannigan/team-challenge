@@ -7,17 +7,17 @@ class App extends Component {
 
     this.state = { submitted: false };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
+  // Change state on reset, to show alert
   handleSubmit(state) {
-    console.log('App received submit!');
-    var totalElems = Object.keys(state);
-    var totalValid = totalElems.reduce((total, key) => {
-      if(state[key].valid)
-        total++;
-      return total;
-    }, 0);
     this.setState({ submitted: true });
+  }
+
+  // Change state on reset, to reset alert
+  handleReset() {
+    this.setState({ submitted: false });
   }
 
   render() {
@@ -33,7 +33,7 @@ class App extends Component {
           <h2><small>Our service is fun and awesome, but you must be 13 years old to join</small></h2>
         </div>
         {submitMessage}
-        <SignUpForm submitCallback={this.handleSubmit}/>
+        <SignUpForm submitCallback={this.handleSubmit} resetCallback={this.handleReset}/>
       </div>
     );
   }

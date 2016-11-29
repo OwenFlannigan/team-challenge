@@ -3,15 +3,18 @@ import React from 'react';
 /**
  * A component representing a controlled input for an email address
  */
+//var validations = {required:true, email:true};
+
 class EmailInput extends React.Component {
   validate(currentValue){
+
     if(currentValue === ''){ //check presence
-      return {missing: true, isValid: false}
+      return {missing: true, isValid: false};
     }
 
     //check email validity
     //pattern comparison from w3c https://www.w3.org/TR/html-markup/input.email.html#input.email.attrs.value.single
-    var valid = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(currentValue)
+    var valid = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(currentValue);
     if(!valid){
       return {invalidEmail:true, isValid:false};
     }    
@@ -31,7 +34,7 @@ class EmailInput extends React.Component {
       }
     };
 
-    this.props.updateParent(stateUpdate) //update parent state
+    this.props.updateParent(stateUpdate); //update parent state
   }
 
   render() {
@@ -42,16 +45,12 @@ class EmailInput extends React.Component {
     return (
       <div className={inputStyle}>
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" className="form-control" placeholder="email address"
+        <input type="email" id="email" name="email" className="form-control" placeholder="email address" required 
                 value={this.props.value}
                 onChange={(e) => this.handleChange(e)}
         />
-        {errors.missing &&
-          <p className="help-block error-missing">we need to know your email address</p>
-        }
-        {errors.invalid &&
-          <p className="help-block error-invalid">this is not a valid email address</p>
-        }
+        {errors.missing && <p className="help-block error-missing">Email address required</p>}
+        {errors.invalidEmail && <p className="help-block error-invalid">This is not a valid email address</p>}
       </div>
     );
   }

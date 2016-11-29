@@ -22,7 +22,7 @@ class SignUpForm extends React.Component {
   }
 
   //callback for updating the state with child information
-  updateState(stateChange) {
+  updateState(stateChange) {  
     this.setState(stateChange);
   }
 
@@ -34,6 +34,7 @@ class SignUpForm extends React.Component {
       emptyState[key] = { value: '', valid: false };
     });
     this.setState(emptyState);
+    this.props.resetCallback(this.state);
   }
 
   //callback for the submit button
@@ -41,12 +42,11 @@ class SignUpForm extends React.Component {
     event.preventDefault();
     console.log('Submitted!');
     this.props.submitCallback(this.state);
-    // this.updateState(this.state);
   }
 
   render() {
     //if all fields are valid, button should be enabled
-    var buttonDisabled = !(this.state.email.valid && this.state.name.valid && this.state.dob.isValid && this.state.password.valid);
+    var buttonDisabled = !(this.state.email.valid && this.state.name.valid && this.state.dob.valid && this.state.password.valid && this.state.passwordConf.valid) || false;
 
     return (
       <form name="signupForm" onSubmit={(e) => this.handleSubmit(e)}>
@@ -74,8 +74,7 @@ class SignUpForm extends React.Component {
         {/* Submit Buttons */}
         <div className="form-group">
           <button id="resetButton" type="reset" className="btn btn-default" onClick={(e) => this.handleReset(e)}>Reset</button> {' ' /*space*/}
-          {/*<button id="submitButton" type="submit" className="btn btn-primary" disabled={buttonDisabled}>Sign Me Up!</button>*/}
-          <button id="submitButton" type="submit" className="btn btn-primary">Sign Me Up!</button>
+          <button id="submitButton" type="submit" className="btn btn-primary" disabled={buttonDisabled}>Sign Me Up!</button>
         </div>
 
       </form>
