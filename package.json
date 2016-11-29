@@ -1,5 +1,6 @@
 {
   "name": "team-challenge",
+  "homepage": "http://OwenFlannigan.github.io/team-challenge",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
